@@ -1,0 +1,829 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\title{Stat 243 -- Homework 04}
+\author{Richmond Yevudza}
+\date{February 17, 2022}
+
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Stat 243 -- Homework 04},
+  pdfauthor={Richmond Yevudza},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\begin{document}
+\maketitle
+
+\hypertarget{section}{%
+\paragraph{3.14}\label{section}}
+
+population mean = \textbf{300}
+
+standard error = \(\frac{(310-290)}{4}=\) \textbf{5}
+
+\hypertarget{a}{%
+\paragraph{3.18a}\label{a}}
+
+250 sample mean does not fall in the range of the sampling distribution
+therefore \(\overline{x} = 250\) is \textbf{extremely unlikely to
+occur}.
+
+\hypertarget{b}{%
+\paragraph{3.18b}\label{b}}
+
+305 sample mean isn't uncommon in the sampling distribution therefore
+\(\overline{x} = 305\) is \textbf{reasonably likely to occur from a
+sample of this size}.
+
+\hypertarget{c}{%
+\paragraph{3.18c}\label{c}}
+
+315 sample mean is uncommon in the sampling distribution but the same
+sample mean takes place quite frequently in this sampling distribution
+therefore \(\overline{x} = 315\) is \textbf{unusual but might occur
+occasionally}.
+
+\hypertarget{a-1}{%
+\paragraph{3.23a}\label{a-1}}
+
+30 dollars shows the average co-payment for month's supply of ointment
+for regular users. This is also a parameter and the notation for
+population mean is
+
+27.90 dollars is the sample mean co-payment of regular users of sample
+size 75. This is a statistic and the notation for sample statistic is
+\(\mu\). \(\overline{x}\).
+
+\hypertarget{b-1}{%
+\paragraph{3.23b}\label{b-1}}
+
+The shape of the dot plot would be \textbf{bell shaped} because there
+will be one point of sample mean 27.90. The plot will also be centered
+at the average of \(\mu\)=30.
+
+\hypertarget{c-1}{%
+\paragraph{3.23c}\label{c-1}}
+
+There will be 1000 dots in the dot plot because there are 1000 samples.
+Each dot shows the sample mean of 75 co-payments.
+
+\hypertarget{a-2}{%
+\paragraph{3.24a}\label{a-2}}
+
+It is given that the average household size in US is 2.61. The sampling
+distribution which is not centered at the average 2.61 is a biased
+distribution.
+
+For unbiased distributions, we are looking at distributions A and D
+since the sampling distribution for these two are centered at 2.61 (the
+average).
+
+The distribution B has more dots at the right of the center 2.61, which
+produces a higher average. Therefore, distribution B is a biased
+distribution. The distribution C has more dots at the left of the center
+2.61 which produces a higher average. Therefore, distribution C is also
+a biased distribution.
+
+\hypertarget{b-2}{%
+\paragraph{3.24b}\label{b-2}}
+
+Variability of distribution decreases with increase in sample size.
+Given that one distribution has the sample size n=100 and the other has
+the sample size n=500, looking at the sets of 1000 sample means, the
+distribution A has more variability and distribution D has less
+variability. Therefore, according to sample sizes n=100 is of the
+distribution A and n=500 is of distribution D.
+
+\hypertarget{section-1}{%
+\paragraph{3.42}\label{section-1}}
+
+Interval estimate = \(5 \pm 8 = (5-8, 5+8) = (-3,13)\)
+
+The interval estimate of the difference of population mean
+\(\mu_1-\mu_2\) is \textbf{-3 to 13}.
+
+\hypertarget{a-3}{%
+\paragraph{3.51a}\label{a-3}}
+
+30\% is a \textbf{statistic}.
+
+The correct notation of the sample proportion is \(\hat{p}\).
+
+\hypertarget{b-3}{%
+\paragraph{3.51b}\label{b-3}}
+
+The estimated proportion p is 0.30 by using the sample information which
+in this case was estimated with the information, the young people who
+were arrested by the age of 23 in US.
+
+\hypertarget{c-2}{%
+\paragraph{3.51c}\label{c-2}}
+
+Interval estimate =
+\(0.30 \pm 0.01 = (0.30-0.01, 0.30+0.01) = (0.29,0.31)\)
+
+The interval estimate of population proportion p is \textbf{0.29 to
+0.31}.
+
+\hypertarget{d}{%
+\paragraph{3.51d}\label{d}}
+
+The actual proportion can't be less than 25\% because the range of
+reasonable values for the population proportion is 0.29 to 0.31.
+
+\hypertarget{a-4}{%
+\paragraph{3.52a}\label{a-4}}
+
+Population: All people in the US whose ages are 18 or above 18.
+
+Sample: The random sample of 147291 adults who were in touch with and
+inquire whether they got health insurance from an employer or not.
+
+Relevant statistic: \(\hat{p}=0.45\)
+
+\hypertarget{b-4}{%
+\paragraph{3.52b}\label{b-4}}
+
+Interval estimate =
+\(0.45 \pm 0.01 = (0.45-0.01, 0.45+0.01) = (0.44,0.46)\)
+
+\hypertarget{section-2}{%
+\paragraph{3.53}\label{section-2}}
+
+It is 95\% confident that proportion of all adults who believe the
+necessity of a car is between 0.83 and 0.89.
+
+\hypertarget{a-5}{%
+\paragraph{3.58a}\label{a-5}}
+
+This is a matched pairs experiment because in the experiment of urinary
+BPA concentration all the participants were used in both treatments.
+
+In the experiment it is seen that there is a large variability in BPA
+concentration so the matched pair experiment is used to reduce
+variability of the data.
+
+\hypertarget{b-5}{%
+\paragraph{3.58b}\label{b-5}}
+
+\(\mu_1-\mu_2\)
+
+\hypertarget{c-3}{%
+\paragraph{3.58c}\label{c-3}}
+
+It is 95\% confident that the difference in the mean urinary BPA
+concentration after taking canned soup and fresh soup for five days will
+be between 19.6\(\mu\)g/L and 25.5\(\mu\)g/L.
+
+\hypertarget{d-1}{%
+\paragraph{3.58d}\label{d-1}}
+
+The sample mean difference will be close to population mean difference
+if a large sample is taken. This concludes that the confidence interval
+will be narrower if the study includes 500 participants instead of 75.
+
+\hypertarget{a-6}{%
+\paragraph{3.60a}\label{a-6}}
+
+The relevant parameter is the \textbf{population mean} denoted by
+\(\mu\). This is the mean effect on weight over two years after one
+month overeating.
+
+\hypertarget{b-6}{%
+\paragraph{3.60b}\label{b-6}}
+
+To find the actual exact value of the population mean, we have to
+collect all population who overeat for one month. Then after that, we
+find out the result after two and a half years.
+
+\hypertarget{c-4}{%
+\paragraph{3.60c}\label{c-4}}
+
+Confidence interval =
+\(6.8 \pm 2*1.2 = (6.8-2 * 1.2, 6.8+2*1.2) = (4.4,9.2)\)
+
+Therefore, it is 95\% confident that the true population mean effect on
+weight put on over two years after one month of overeating lies between
+\textbf{4.4 and 9.2 pounds}.
+
+\hypertarget{d-2}{%
+\paragraph{3.60d}\label{d-2}}
+
+Margin of error = \(2*1.2 = 2.4\)
+
+Therefore, it would be expected that estimate of the mean 6.8 pounds
+lies within 2.4 pounds of true mean.
+
+\hypertarget{a-7}{%
+\paragraph{3.64a}\label{a-7}}
+
+The given interpretation of the 95\% confidence interval is not correct
+because 95\% confidence interval is for the population mean pulse rate
+not for the sample mean pulse rate of the students.
+
+\hypertarget{b-7}{%
+\paragraph{3.64b}\label{b-7}}
+
+The given interpretation of the 95\% confidence interval is not correct
+because 95\% confidence interval is for the population mean pulse rate
+not for the sample mean pulse rate of the students
+
+\hypertarget{c-5}{%
+\paragraph{3.64c}\label{c-5}}
+
+The given interpretation of the 95\% confidence interval is not in doubt
+because it is not sure whether or not the interval considers the
+population mean.
+
+\hypertarget{d-3}{%
+\paragraph{3.64d}\label{d-3}}
+
+The given interpretation of the 95\% confidence interval is not correct
+because 95\% confidence interval for the mean pulse rate is not from the
+US college students.
+
+\hypertarget{e}{%
+\paragraph{3.64e}\label{e}}
+
+The given interpretation of the 95\% confidence interval is not correct
+because 95\% confidence interval for the mean pulse rate is not from the
+US college students.
+
+\hypertarget{f}{%
+\paragraph{3.64f}\label{f}}
+
+The given interpretation of the 95\% confidence interval is not correct
+because the population mean is a particular permanent value.
+
+\hypertarget{g}{%
+\paragraph{3.64g}\label{g}}
+
+The given interpretation of the 95\% confidence interval is not correct
+because 95\% confidence interval is for the population mean pulse rate
+not for the sample mean pulse rate of the students.
+
+\hypertarget{a-8}{%
+\paragraph{3.66a}\label{a-8}}
+
+The sample 79, 79, 97, 85, 88 is the possible bootstrap sample from the
+original sample since all the values are there in the original sample
+and also the sample size of the given sample and the original sample is
+same.
+
+\hypertarget{b-8}{%
+\paragraph{3.66b}\label{b-8}}
+
+The sample 72, 79, 85, 88, 97 is the possible bootstrap sample from the
+original sample since all the values are there in the original sample
+and also the sample size of the given sample and the original sample is
+same.
+
+\hypertarget{c-6}{%
+\paragraph{3.66c}\label{c-6}}
+
+The sample 85, 88, 97, 72 is not the possible bootstrap sample from the
+original sample since the sample size of the bootstrap sample and the
+original sample should be same. Here, the sample size of the given
+sample is 4 and the sample size of the original sample is 5.
+
+\hypertarget{d-4}{%
+\paragraph{3.66d}\label{d-4}}
+
+The sample 88, 97, 81, 78, 85 is not the possible bootstrap sample from
+the original sample since the original sample does not have the value
+78.
+
+\hypertarget{e-1}{%
+\paragraph{3.66e}\label{e-1}}
+
+The sample 97, 85, 79, 85, 97 is the possible bootstrap sample from the
+original sample since all the values are there in the original sample
+and also the sample size of the given sample and the original sample is
+same.
+
+\hypertarget{f-1}{%
+\paragraph{3.66f}\label{f-1}}
+
+The sample 72, 72, 79, 72, 79 is the possible bootstrap sample from the
+original sample since all the values are there in the original sample
+and also the sample size of the given sample and the original sample is
+same.
+
+\hypertarget{a-9}{%
+\paragraph{3.75a}\label{a-9}}
+
+\(\hat{p} = \frac{26}{174} = 0.149\)
+
+Therefore the best estimate of the proportion of all snails of this type
+to live after being eaten by a bird is \textbf{0.149}.
+
+\hypertarget{b-9}{%
+\paragraph{3.75b}\label{b-9}}
+
+SE = 0.028
+
+\hypertarget{c-7}{%
+\paragraph{3.75c}\label{c-7}}
+
+Confidence interval = \((\hat{p_1} - \hat{p_a}) \pm 2 *SE\)
+
+Confidence interval =
+\(0.149\pm 2*0.028 =(0.149-0.056,0.149+0.056) = (0.093,0.205)\)
+
+Therefore, it is 95\% confident that the true proportion of all snails
+that will live after being eaten by a bird lies between \textbf{0.093
+and 0.205}.
+
+\hypertarget{a-10}{%
+\paragraph{3.76a}\label{a-10}}
+
+s = \(\sqrt{\frac{\sum_{i=1}ˆn (x_i-\overline{x})^2}{n-1}}\)
+
+s = \(\sqrt{\frac{1498}{7}} = \sqrt{214} = 14.63\)
+
+Therefore, the standard deviation of the sample is \textbf{14.63}.
+
+\hypertarget{b-10}{%
+\paragraph{3.76b}\label{b-10}}
+
+To create the bootstrap shows the eight slips by eight values and mingle
+those slips. Take one slip and write the number and put that slip back.
+Do this step for eight times. The eight numbers is the bootstrap
+samples. The bootstrap statistic is the mean of the eight numbers.
+
+\hypertarget{c-8}{%
+\paragraph{3.76c}\label{c-8}}
+
+We expect the bootstrap distribution to be \textbf{bell shaped} and it's
+center will be at \textbf{34}.
+
+\hypertarget{d-5}{%
+\paragraph{3.76d}\label{d-5}}
+
+The population parameter of interest is population mean \(\mu\). That is
+the average number of ants that will climb on a piece of a peanut butter
+sandwich left on the ground near an ant hill. The best point estimate of
+the population mean is \(\overline{x}\) = 34
+
+\hypertarget{e-2}{%
+\paragraph{3.76e}\label{e-2}}
+
+Confidence interval = \((\hat{p_1} - \hat{p_a}) \pm 2 *SE\)
+
+Confidence interval = \(34\pm 2*4.85 =(34-4.85,34+4.85) = (24.3,43.7)\)
+
+\hypertarget{section-3}{%
+\paragraph{3.78**}\label{section-3}}
+
+\(\overline{x} = \frac{658+456+830+385}{5} = \frac{3025}{5} = 605\)
+
+Therefore, the mean of the sample is\textbf{605}.
+
+Confidence interval = \((\hat{p_1} - \hat{p_a}) \pm 2 *SE\)
+
+Confidence interval =
+\(605\pm 2*70.597 =(605-141.194,605+141.194) = (463.81,746.19)\)
+
+Therefore, it is 95\% confident that the average monthly sales in the
+United States lies between \textbf{463.81 and 746.19}.
+
+\hypertarget{a-11}{%
+\paragraph{3.81a}\label{a-11}}
+
+The correct option is 0.015. This is because the figure of the bootstrap
+difference in sample proportions of teen and adult cell phone users who
+text shows that distribution is centered lying on the value of the
+difference in population proportion. This means that the estimate of the
+difference in the population proportion is \(p_1 - p_a = 0.15\).
+
+The figure of the bootstrap difference in sample proportions of teen and
+adult cell phone users who text shows that the central 95\% of
+difference in sample proportions show in a range from 0.12 to 0.18. This
+range should distance about two standard errors below the mean and two
+standard errors above the mean.
+
+Therefore, the estimate of the standard error is around
+\(\frac{(0.18-0.12)}{4}= 0.015\)
+
+\hypertarget{b-11}{%
+\paragraph{3.81b}\label{b-11}}
+
+Confidence interval = \((\hat{p_1} - \hat{p_a}) \pm 2 *SE\)
+
+Confidence interval =
+\(0.15\pm 2*0.015 =(0.15-2 * 0.015,0.15+2 * 0.015) =(0.15-0.03,0.15 + 0.03) = (0.12,0.18)\)
+
+Therefore, it is 95\% confident that the difference in proportions of
+teen and adult cell phone users who text will lie between 0.12 and 0.18.
+
+\hypertarget{a-12}{%
+\paragraph{3.84a}\label{a-12}}
+
+\textbf{Mean (Difference)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{Distance, }\AttributeTok{data=}\NormalTok{CommuteAtlanta)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 18.156
+\end{verbatim}
+
+\textbf{Standard Deviation (Difference)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sd}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{Distance, }\AttributeTok{data=}\NormalTok{CommuteAtlanta)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 13.79828
+\end{verbatim}
+
+\hypertarget{b-12}{%
+\paragraph{3.84b}\label{b-12}}
+
+The shape is bell shaped that is centered at 18.156.
+
+\hypertarget{c-9}{%
+\paragraph{3.84c}\label{c-9}}
+
+Looking at the upper right part of the graph, the standard error for
+mean commujte distance for 1000 bootstrap sample is \textbf{0.606}.
+
+\hypertarget{d-6}{%
+\paragraph{3.84d}\label{d-6}}
+
+Confidence interval = \((\hat{p_1} - \hat{p_a}) \pm 2 *SE\)
+
+Confidence interval =
+\(18.6\pm 2*0.60 =(18.6-1.212,18.6+1.212) = (16.948,19.372)\)
+
+Therefore, it is 95\% confident that the mean of the commute distances
+in Commute Atlanta lies between \textbf{16.948 and 19.372 miles}.
+
+\hypertarget{a-13}{%
+\paragraph{3.89a}\label{a-13}}
+
+The maximum confidence level would be 100\%. This means that, keeping
+95\% of the middle value, the remaining percentage left is (100-95)\% =
+5\%. This 5\% should be divided equally into two tails. The value that
+must be chopped off from each tail for 95\% confidence level is
+2.5\%.The bootstrap distribution contains 1,000 bootstrap samples. That
+is, 2.5\% of 1.000 = 25 of the lowest and highest values should be
+chopped off to create 95\% confidence interval
+
+\hypertarget{b-13}{%
+\paragraph{3.89b}\label{b-13}}
+
+The maximum confidence level would be 100\%. This means that, keeping
+90\% of the middle value, the remaining percentage left is (100-90)\%
+=10\%. This 10\% should be divided equally into two tails. The value
+that must be chopped off from each tail for 90\% confidence level is
+5\%. The bootstrap distribution contains 1,000 bootstrap samples. That
+is, 5\% of 1.000 = 50 of the lowest and highest values should be chopped
+off to create 90\% confidence interval.
+
+\hypertarget{c-10}{%
+\paragraph{3.89c}\label{c-10}}
+
+The maximum confidence level would be 100\%. This means that, keeping
+98\% of the middle value, the remaining percentage left is (100-98)\%
+=2\%. This 2\% should be divided equally into two tails. The value that
+must be chopped off from each tail for 98\% confidence level is 1\%. The
+bootstrap distribution contains 1,000 bootstrap samples. That is, 1\% of
+1,000 = 10 of the lowest and highest values should be chopped off to
+create 98\% confidence interval.
+
+\hypertarget{d-7}{%
+\paragraph{3.89d}\label{d-7}}
+
+The maximum confidence level would be 100\%. This means that, keeping
+99\% of the middle value, the remaining percentage left is (100-99)\%
+=1\%. This 1\% should be divided equally into two tails. The value that
+must be chopped off from each tail for 99\% confidence level is 0.5\%.
+The bootstrap distribution contains 1,000 bootstrap samples. That is,
+0.5\% of 1.000 = 5 of the lowest and highest values should be chopped
+off to create 99\% confidence interval.
+
+\hypertarget{section-4}{%
+\paragraph{3.90}\label{section-4}}
+
+\textbf{Option A: ``66 to 74'' is the most likely result after the
+change}. This is because the length of the confidence interval increases
+with the increment of the confidence level.
+
+Therefore, 99\% confidence interval should be 66 to 74.
+
+\hypertarget{section-5}{%
+\paragraph{3.91}\label{section-5}}
+
+\textbf{Option C: ``67.5 to 72.5'' is the most likely result after the
+change}. This is because the length of the confidence interval decreases
+with the decrease of the confidence level.
+
+Therefore, 90\% confidence interval should be 67.5 to 72.5.
+
+\hypertarget{section-6}{%
+\paragraph{3.92}\label{section-6}}
+
+\textbf{Option C: ``67.5 to 72.5'' is the most likely result after the
+change}. This is because the standard error decreases with the increase
+of the sample size. Thus, the bootstrap distribution will be less
+widened, so the confidence interval will be of small width.
+
+Therefore, using the sample size n = 45, the 95\% confidence interval
+should be 67.5 to 72.5
+
+\hypertarget{section-7}{%
+\paragraph{3.93}\label{section-7}}
+
+\textbf{Option A: ``66 to 74'' is the most likely result after the
+change}. This is because the standard error increases with the decrease
+of the sample size. Thus, the bootstrap distribution will be more
+widened, so the confidence interval will be of larger width.
+
+Therefore, using the sample size n= 16, the 95\% confidence interval
+should be 66 to 74.
+
+\hypertarget{section-8}{%
+\paragraph{3.94}\label{section-8}}
+
+\textbf{Option B: ``67 to 73'' is the most likely result}. This is
+because the width of the confidence interval will not change by adding
+or subtracting bootstrap samples
+
+\hypertarget{section-9}{%
+\paragraph{3.95}\label{section-9}}
+
+\textbf{Option B: ``67 to 73'' is most likely result}. This is because
+the width of the confidence interval will not change by adding or
+subtracting bootstrap samples.
+
+\hypertarget{a-14}{%
+\paragraph{3.100a}\label{a-14}}
+
+From the Figure of the bootstrap distribution of sample means of IQ
+scores it is clear that the distribution has its center at 100.
+
+Therefore, the mean of the original sample of IQ scores is
+\(\overline{x}=100\).
+
+\hypertarget{b-14}{%
+\paragraph{3.100b}\label{b-14}}
+
+The maximum confidence level would be 100\%. This means that keeping
+99\% of the middle value, the remaining percentage left is (100-99)\% =
+1\%. This 1\% should be divided equally into two tails. The values to be
+removed from each tail for 99\% confidence level are 0.5\%. The
+bootstrap distribution contains 1,000 bootstrap samples. That is, 0.5\%
+of 1,000 = 5 of the lowest and highest values should be removed to
+create 99\% confidence interval.
+
+Therefore, the 99\% confidence interval is \textbf{(88,112)}.
+
+\hypertarget{section-10}{%
+\paragraph{3.102}\label{section-10}}
+
+Here for the 90\% confidence interval,z valueis 1.645 Margin of error =
+\(\sqrt(0.753*(1-0.753)/1000)= 1.645 * 0.0136= 0.022\)
+
+New Interval = (0.753 -0.022， 0.753+ 0.022）= \textbf{(0.731，0.775）}.
+
+\hypertarget{section-11}{%
+\paragraph{3.105}\label{section-11}}
+
+Confidence interval = \((\hat{p_1} - \hat{p_a}) \pm 2 *SE\)
+
+Confidence interval =
+\(3.860\pm 2*0.189 =(3.860-2 * 0.189,3.860+2 * 0.189) =(3.860-0.378,3.860 + 0.378) = (3.48,4.23)\)
+
+Therefore, the 95\% confidence interval for the average tip left at the
+restaurant is \textbf{(3.48, 4.23)}.
+
+\hypertarget{a-15}{%
+\paragraph{6.4a}\label{a-15}}
+
+SE =
+\(\sqrt{\frac{p(1-p)}{n}}=\sqrt{\frac{0.27(1-0.27)}{30}}= \sqrt{\frac{0.1971}{30}} = 0.081\)
+
+Therefore the standard error of the distribution of sample proportion is
+\textbf{0.081}.
+
+\hypertarget{b-15}{%
+\paragraph{6.4b}\label{b-15}}
+
+\(np = 30(0.27) = 8.1 [<10]\)
+
+\(n(1-p) = 30(1-0.27) = 21.9 [>10]\)
+
+Since the value of np is less than 10 and n(1-p) is greater than 10, the
+distribution sample proportion isn't reasonably normal.
+
+\hypertarget{a-16}{%
+\paragraph{6.10a}\label{a-16}}
+
+SE =
+\(\sqrt{\frac{p(1-p)}{n}}=\sqrt{\frac{0.69(1-0.69)}{100}}= \sqrt{\frac{0.2139}{100}} = 0.046\)
+
+Therefore the standard error of the distribution of sample proportion is
+\textbf{0.046}.
+
+\hypertarget{b-16}{%
+\paragraph{6.10b}\label{b-16}}
+
+SE =
+\(\sqrt{\frac{p(1-p)}{n}}=\sqrt{\frac{0.69(1-0.69)}{1000}}= \sqrt{\frac{0.2139}{1000}} = 0.015\)
+
+Therefore the standard error of the distribution of sample proportion is
+\textbf{0.015}.
+
+\hypertarget{c-11}{%
+\paragraph{6.10c}\label{c-11}}
+
+SE =
+\(\sqrt{\frac{p(1-p)}{n}}=\sqrt{\frac{0.75(1-0.75)}{100}}= \sqrt{\frac{0.1875}{100}} = 0.043\)
+
+Therefore the standard error of the distribution of sample proportion is
+\textbf{0.043}.
+
+\hypertarget{d-8}{%
+\paragraph{6.10d}\label{d-8}}
+
+SE =
+\(\sqrt{\frac{p(1-p)}{n}}=\sqrt{\frac{0.75(1-0.75)}{1000}}= \sqrt{\frac{0.1875}{1000}} = 0.014\)
+
+Therefore the standard error of the distribution of sample proportion is
+\textbf{0.014}.
+
+\hypertarget{section-12}{%
+\paragraph{6.12}\label{section-12}}
+
+\textbf{p = 0.8}
+
+SE =
+\(\sqrt{\frac{p(1-p)}{n}}=\sqrt{\frac{0.8(1-0.8)}{100}}= \sqrt{\frac{0.16}{100}} = 0.040\)
+
+Therefore the standard error of the distribution of sample proportion is
+\textbf{0.040}.
+
+\textbf{p = 0.5}
+
+SE =
+\(\sqrt{\frac{p(1-p)}{n}}=\sqrt{\frac{0.5(1-0.5)}{100}}= \sqrt{\frac{0.25}{100}} = 0.050\)
+
+Therefore the standard error of the distribution of sample proportion is
+\textbf{0.050}.
+
+\textbf{p = 0.3}
+
+SE =
+\(\sqrt{\frac{p(1-p)}{n}}=\sqrt{\frac{0.3(1-0.3)}{100}}= \sqrt{\frac{0.21}{100}} = 0.046\)
+
+Therefore the standard error of the distribution of sample proportion is
+\textbf{0.046}.
+
+\textbf{p = 0.1}
+
+SE =
+\(\sqrt{\frac{p(1-p)}{n}}=\sqrt{\frac{0.1(1-0.1)}{100}}= \sqrt{\frac{0.09}{100}} = 0.030\)
+
+Therefore the standard error of the distribution of sample proportion is
+\textbf{0.030}.
+
+The largest standard error is \textbf{0.050 for p = 0.5} and the
+smallest standard error is \textbf{0.030 for p = 0.1}.
+
+\hypertarget{a-17}{%
+\paragraph{6.16a}\label{a-17}}
+
+\hypertarget{b-17}{%
+\paragraph{6.16b}\label{b-17}}
+
+SE =
+\(\sqrt{\frac{p(1-p)}{n}}=\sqrt{\frac{0.4(1-0.4)}{100}}= \sqrt{\frac{0.24}{100}} = 0.049\)
+
+Therefore the standard error of the distribution of sample proportion is
+\textbf{0.049}. This shows us that the results obtained from part (a) is
+similar to the results obtained in part (b).
+
+\hypertarget{a-18}{%
+\paragraph{6.18a}\label{a-18}}
+
+\hypertarget{b-18}{%
+\paragraph{6.18b}\label{b-18}}
+
+\(np = 10(0.2) = 2 [<10]\)
+
+\(n(1-p) = 10(1-0.2) = 8 [>10]\)
+
+Since the value of np is less than 10 and n(1-p) is greater than 10, the
+distribution sample proportion doesn't follow normal distribution.
+
+SE =
+\(\sqrt{\frac{p(1-p)}{n}}=\sqrt{\frac{0.2(1-0.2)}{10}}= \sqrt{\frac{0.16}{10}} = 0.126\)
+
+Therefore the standard error of the distribution of sample proportion is
+\textbf{0.126}. This shows us that the results obtained from part (a) is
+slightly closer to the results obtained in part (b).
+
+\end{document}
